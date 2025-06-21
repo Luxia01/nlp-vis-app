@@ -30,3 +30,5 @@ if st.button("开始分析"):
         st.write(f"**置信度：** {result['score']:.4f}")
     except Exception as e:
         st.error(f"分析失败: {str(e)}")
+# 使用更稳定的替代模型
+classifier = pipeline("sentiment-analysis", model="distilbert-base-uncased-finetuned-sst-2-english")
