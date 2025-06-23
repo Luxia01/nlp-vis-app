@@ -3,24 +3,28 @@ import streamlit as st
 # 初始化 session_state
 if "authenticated" not in st.session_state:
     st.session_state.authenticated = False
+if "username" not in st.session_state:
+    st.session_state.username = ""
 
 # 登录函数
 def login():
     st.title("🔐 登录 NLP 可视化系统")
     username = st.text_input("用户名")
     password = st.text_input("密码", type="password")
-    if st.button("登录"):
+    login_btn = st.button("登录")
+    
+    if login_btn:
         if username == "liming" and password == "123456":
             st.session_state.authenticated = True
-            st.success("登录成功！")
-            st.experimental_rerun()
+            st.session_state.username = username
+            st.success("登录成功！请点击左上角 [重新运行] 或刷新页面进入系统")
         else:
             st.error("用户名或密码错误")
 
-# 只有登录后才能访问主应用
+# 登录控制逻辑
 if not st.session_state.authenticated:
     login()
-    st.stop()  # 停止运行主程序
+    st.stop()
 
 import streamlit as st
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
