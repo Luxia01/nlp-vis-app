@@ -14,7 +14,7 @@ text = st.text_input("请输入一句文本：", "我真的非常喜欢这部电
 # 缓存模型加载
 @st.cache_resource
 def load_model():
-    tokenizer = AutoTokenizer.from_pretrained("textattack/albert-base-v2-SST-2")
+    tokenizer = AutoTokenizer.from_pretrained("textattack/albert-base-v2-SST-2", use_fast=False)
     model = AutoModelForSequenceClassification.from_pretrained("textattack/albert-base-v2-SST-2")
     return tokenizer, model
 
