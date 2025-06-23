@@ -22,6 +22,7 @@ if not st.session_state.authenticated:
     login()
     st.stop()  # 停止运行主程序
 
+import streamlit as st
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
 import matplotlib.pyplot as plt
